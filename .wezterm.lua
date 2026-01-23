@@ -97,6 +97,14 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.TogglePaneZoomState,
   },
+  -- 【强制 Ctrl+V 粘贴】
+  -- 警告：这会让您在 Vim 等工具中失去 Ctrl+V (块选择) 的功能
+  -- 但如果您不怎么用 Vim 的块选择，这个设置非常爽
+  {
+    key = 'v',
+    mods = 'CTRL',
+    action = wezterm.action.PasteFrom 'Clipboard',
+  },
 
   -- 【光标跳转】(在分屏之间切换)
   -- 按 Ctrl+A 松手，再按方向键
