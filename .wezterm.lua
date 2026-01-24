@@ -65,8 +65,8 @@ config.mouse_bindings = {
 -- ==========================================
 
 -- 1. 定义“唤醒键” (Leader Key)
--- 设置为 Ctrl + A (如果不习惯，可以改成 Ctrl + B)
-config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+-- 设置为 Ctrl + Backspace (如果不习惯，可以改成 Ctrl + B)
+config.leader = { key = 'Backspace', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
   -- 【分屏操作】
