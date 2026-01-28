@@ -14,12 +14,14 @@ config.window_decorations = "RESIZE" -- 去掉 Windows 标题栏
 config.win32_system_backdrop = 'Acrylic' -- 亚克力模糊
 config.window_background_opacity = 0.85 -- 透明度
 
--- 字体设置 (建议去下载安装 Nerd Font 版本，否则图标可能显示问号)
-config.font = wezterm.font_with_fallback {
-  'JetBrains Mono', -- 英文主字体
-  'Microsoft YaHei', -- 中文兜底
-}
-config.font_size = 13.0
+-- 字体设置
+config.font = wezterm.font_with_fallback({
+    'LXGW Bright Code GB', 'Consolas',
+    'Courier New',
+    'monospace'
+})
+config.font_size = 12
+
 
 -- 优化标签栏样式 (更现代，融入背景)
 config.use_fancy_tab_bar = false
@@ -27,7 +29,7 @@ config.tab_bar_at_bottom = false
 config.colors = {
   tab_bar = {
     -- 让标签栏背景也透明，不仅是窗口内容透明
-    background = 'rgba(0,0,0,0)', 
+    background = 'rgba(0,0,0,0)',
   }
 }
 
@@ -69,6 +71,24 @@ config.mouse_bindings = {
 config.leader = { key = 'Backspace', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
+  -- 【新建窗口】
+  {
+    key = 'n',
+    mods = 'CTRL',
+    action = wezterm.action.SpawnWindow,
+  },
+  -- 【新建标签页】
+  {
+    key = 't',
+    mods = 'CTRL',
+    action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+  },
+  -- 【删除单词】
+  {
+    key = 'Backspace',
+    mods = 'ALT',
+    action = wezterm.action.SendKey { key = 'Backspace', mods = 'CTRL' },
+  },
   -- 【分屏操作】
   -- 垂直分屏：按 Ctrl+A 松手，再按 - (减号)
   {
@@ -82,7 +102,7 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
-  
+
   -- 【关闭分屏】
   -- 按 Ctrl+A 松手，再按 Backspace
   {
@@ -97,14 +117,7 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.TogglePaneZoomState,
   },
-  -- 【强制 Ctrl+V 粘贴】
-  -- 警告：这会让您在 Vim 等工具中失去 Ctrl+V (块选择) 的功能
-  -- 但如果您不怎么用 Vim 的块选择，这个设置非常爽
-  {
-    key = 'v',
-    mods = 'CTRL',
-    action = wezterm.action.PasteFrom 'Clipboard',
-  },
+
 
   -- 【光标跳转】(在分屏之间切换)
   -- 按 Ctrl+A 松手，再按方向键
@@ -112,7 +125,7 @@ config.keys = {
   { key = 'RightArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
   { key = 'UpArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
-  
+
   -- 【调整分屏大小】(按住 Alt + 方向键)
   -- 这个不需要 Leader 键，直接按住 Alt 调整即可，非常方便
   { key = 'LeftArrow', mods = 'ALT', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
@@ -126,7 +139,7 @@ config.keys = {
 -- ==========================================
 wezterm.on('update-right-status', function(window, pane)
   local date = wezterm.strftime '%Y-%m-%d %H:%M:%S'
-  
+
   -- 获取当前窗口名称或工作区名称
   local stat = window:active_workspace()
   if stat == 'default' then
@@ -136,7 +149,7 @@ wezterm.on('update-right-status', function(window, pane)
   -- 设置颜色 (根据您的 Tokyo Night 主题配色)
   local color_date = { Foreground = { Color = '#c0caf5' } }
   local color_bg = { Background = { Color = '#1a1b26' } }
-  
+
   -- 格式化输出
   window:set_right_status(wezterm.format {
     { Attribute = { Intensity = 'Bold' } },
