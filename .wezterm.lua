@@ -14,13 +14,11 @@ config.window_decorations = "RESIZE" -- 去掉 Windows 标题栏
 config.win32_system_backdrop = 'Acrylic' -- 亚克力模糊
 config.window_background_opacity = 0.85 -- 透明度
 
--- 字体设置
-config.font = wezterm.font_with_fallback({
-    'LXGW Bright Code GB', 'Consolas',
-    'Courier New',
-    'monospace'
-})
-config.font_size = 12
+config.font = wezterm.font_with_fallback {
+  'JetBrains Mono',
+  'Microsoft YaHei',
+}
+config.font_size = 13.0
 
 
 -- 优化标签栏样式 (更现代，融入背景)
@@ -71,6 +69,12 @@ config.mouse_bindings = {
 config.leader = { key = 'Backspace', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
+  -- 【粘贴操作】Ctrl+V（解决 opencode 无法粘贴问题）
+  {
+    key = 'v',
+    mods = 'CTRL',
+    action = wezterm.action.PasteFrom 'Clipboard',
+  },
   -- 【新建窗口】
   {
     key = 'n',
