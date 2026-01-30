@@ -158,9 +158,9 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(wezterm.format {
     { Attribute = { Intensity = 'Bold' } },
     { Foreground = { Color = '#7aa2f7' } },
-    { Text = ' ❐ ' .. stat .. '  ' }, -- 工作区图标+名称
+    { Text = '  ' .. stat .. '  ' }, -- 工作区图标+名称
     { Foreground = { Color = '#9ece6a' } },
-    { Text = ' 🕒 ' .. date .. '  ' }, -- 时间图标+时间
+    { Text = '  ' .. date .. '  ' }, -- 时间图标+时间
   })
 end)
 
