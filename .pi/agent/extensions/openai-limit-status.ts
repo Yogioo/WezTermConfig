@@ -130,13 +130,6 @@ export default function (pi: ExtensionAPI) {
     }
   };
 
-  pi.registerCommand("oalimit", {
-    description: "Show OpenAI limit status",
-    handler: async (_args, ctx) => {
-      ctx.ui.notify(`status: ${formatStatus(state, ctx.ui.theme)}`, "info");
-    },
-  });
-
   pi.on("session_start", async (_event, ctx) => {
     ctx.ui.setStatus("openai-limit", "OA syncing...");
     await pull(ctx);
