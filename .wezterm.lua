@@ -13,6 +13,7 @@ config.color_scheme = 'Tokyo Night' -- 颜值担当
 config.window_decorations = "RESIZE" -- 去掉 Windows 标题栏
 config.win32_system_backdrop = 'Acrylic' -- 亚克力模糊
 config.window_background_opacity = 0.85 -- 透明度
+config.enable_scroll_bar = true -- 右侧滚动条
 
 config.font = wezterm.font_with_fallback {
   'JetBrains Mono',
@@ -28,7 +29,9 @@ config.colors = {
   tab_bar = {
     -- 让标签栏背景也透明，不仅是窗口内容透明
     background = 'rgba(0,0,0,0)',
-  }
+  },
+  -- 滚动条配色
+  scrollbar_thumb = '#565f89',   -- 滑块：柔和的蓝灰色（Tokyo Night 风格）
 }
 
 -- ==========================================
